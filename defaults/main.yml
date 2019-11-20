@@ -73,7 +73,8 @@ mssql_sqltempDB_path: "C:\\TempDBFiles\\Data\\{{mssql_instance_name }}"
 mssql_sqltempDBlog_path: "C:\\TempDBFiles\\Log\\{{mssql_instance_name }}"
 
 # security mode - SQL indicates mixed-mode auth, while Windows indicates Windows Auth.
-mssql_security_mode: sql
+# allowed values: SQL or Windows
+mssql_security_mode: SQL
 
 # SA user password, if security mode is set to 'SQL'
 # by default for testing we'll be lazy and use the service account password,
