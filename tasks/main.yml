@@ -154,7 +154,7 @@
     SuppressReboot: "{{ mssql_suppress_reboot }}"
     SecurityMode: "{{ mssql_security_mode }}"
     
-    SAPwd: "{{ mssql_sa_password }}"
+    SAPwd_password: "{{ mssql_sa_password }}"
     # Service Accounts
     #
     # If the type of the DSC resource option is a PSCredential then 
