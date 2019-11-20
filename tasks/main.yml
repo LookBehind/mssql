@@ -154,6 +154,7 @@
     SuppressReboot: "{{ mssql_suppress_reboot }}"
     SecurityMode: "{{ mssql_security_mode }}"
     
+    SAPwd_username: "sa"
     SAPwd_password: "{{ mssql_sa_password }}"
     # Service Accounts
     #
