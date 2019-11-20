@@ -70,6 +70,7 @@
     groups:
       - Domain Users
   tags: service_account
+  when: not mssql_without_domain
   delegate_to: "{{ domain_controller }}"
 
 - name: Active Directory | Ensure SQL Agent Service account is present
@@ -85,6 +86,7 @@
     path: "{{ mssql_base_ldap_path }}"
     groups:
       - Domain Users
+  when: not mssql_without_domain
   delegate_to: "{{ domain_controller }}"
   tags: service_account
 
@@ -150,6 +152,9 @@
     SQLCollation: "{{ mssql_collation }}"
     BrowserSvcStartupType: "{{ mssql_browsersvc_mode }}"
     SuppressReboot: "{{ mssql_suppress_reboot }}"
+    SecurityMode: "{{ mssql_security_mode }}"
+    
+    SAPwd: "{{ mssql_sa_password }}"
     # Service Accounts
     #
     # If the type of the DSC resource option is a PSCredential then 
@@ -187,10 +192,11 @@
     Program: sqlservr.exe 
     Ensure: present
     Enabled: True
-    Profile: "Domain"
+    Profile: "Public"
     Direction: "Inbound"
     Action: Allow
     Description: "Allows the Database Engine to access the network"  
+  when: mssql_firewall_allow_from_public
   tags: configure_firewall
 
 - name: Firewall | Allow SQLBrowser for instance
@@ -200,10 +206,11 @@
     Service: SQLBrowser
     Ensure: present
     Enabled: True
-    Profile: "Domain"
+    Profile: "Public"
     Direction: "Inbound"
     Action: Allow
     Description: "Allows the SQL Server Browser to access the network"  
+  when: mssql_firewall_allow_from_public
   tags: configure_firewall
 
 # Begin SQL Server configuration
