@@ -13,6 +13,8 @@ mssql_drive: C
 mssql_userdbvol_name: Userdbvol01
 mssql_port: 1433
 
+mssql_without_domain: True
+
 ### Memory Configuration ###
 # memory in MB
 # values must be divisible by 512
