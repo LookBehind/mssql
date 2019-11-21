@@ -107,7 +107,7 @@
   win_path:
     elements: 
       - "{{ mssql_temp_download_path }}"
-    state: directory
+    state: present
 
 - name: Fetch SQL Media Downloader
   win_get_url:
